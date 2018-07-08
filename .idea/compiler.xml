@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="Exception" />
+        <module name="Helloword" />
+        <module name="Hibernate" />
+        <module name="JDBC_Template" />
+        <module name="JPA" />
+        <module name="Json" />
+        <module name="JSP" />
+        <module name="spring-boot-json" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Exception" target="1.6" />
+      <module name="Helloword" target="1.6" />
+      <module name="Hibernate" target="1.6" />
+      <module name="JDBC_Template" target="1.6" />
+      <module name="JPA" target="1.6" />
+      <module name="Json" target="1.6" />
+      <module name="JSP" target="1.8" />
+      <module name="rr" target="1.5" />
+      <module name="spring-boot-json" target="1.6" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
