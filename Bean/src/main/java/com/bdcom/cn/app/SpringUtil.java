@@ -1,4 +1,4 @@
-package com.bdcom.cn.util;
+package com.bdcom.cn.app;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -22,8 +22,8 @@ public class SpringUtil implements ApplicationContextAware{
         }
         System.out.println("---------------------------------------------------------------------");
         System.out.println("---------------------------------------------------------------------");
-        System.out.println("---------------com.bdcom.cn.util.SpringUtil------------------------------------------------------");
-        System.out.println("========ApplicationContext配置成功,在普通类可以通过调用SpringUtils.getAppContext()获取applicationContext对象,applicationContext="+SpringUtil.applicationContext+"========");
+        System.out.println("---------------com.bdcom.cn.app.SpringUtil------------------------------------------------------");
+        System.out.println("========ApplicationContext配置成功,在普通类可以通过调用SpringUtils.getAppContext()获取applicationContext对象,applicationContext="+ SpringUtil.applicationContext+"========");
         System.out.println("---------------------------------------------------------------------");
     }
 
