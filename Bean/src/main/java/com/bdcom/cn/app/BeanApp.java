@@ -7,9 +7,9 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class BeanApp {
-    /**注册SpringUtil2
+    /**注册SpringUtil2 与BeanApp不在同一包或子包下
      * 这里为了和上一个冲突，所以方面名为：springUtil2
-     * 实际中使用springUtil
+     *
      */
     @Bean
     public SpringUtil2 springUtil2(){
