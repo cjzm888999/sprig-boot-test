@@ -17,10 +17,10 @@ public class ServletApp {
     /**
      * 使用代码注册Servlet（不需要@ServletComponentScan注解）
      */
-   /* @Bean
+    @Bean
     public ServletRegistrationBean servletRegistrationBean(){
         return new ServletRegistrationBean(new MyServlet(),"/servlet/*");
         //ServletName默认值为首字母小写，即myServlet
 
-    }*/
+    }
 }
