@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  *
  */
-@WebServlet(urlPatterns="/servlet/*", description="Servlet的说明")
+//@WebServlet(urlPatterns="/servlet/*", description="Servlet的说明")
 public class MyServlet extends HttpServlet{
 
     private static final long serialVersionUID = -8685285401859800066L;
@@ -35,7 +35,7 @@ public class MyServlet extends HttpServlet{
         out.println("<title>Hello World</title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<h1>大家好，我的名字叫Servlet</h1>");
+        out.println("<h1>大家好，我的名字叫Servlet1</h1>");
         out.println("</body>");
         out.println("</html>");
     }
