@@ -1,5 +1,7 @@
 package com.bdcom.cn.servlet;
 
+import org.springframework.stereotype.Component;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  *
  */
+@Component
 //@WebServlet(urlPatterns="/servlet/*", description="Servlet的说明")
 public class MyServlet extends HttpServlet{
 
