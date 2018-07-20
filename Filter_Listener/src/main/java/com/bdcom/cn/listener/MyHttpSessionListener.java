@@ -14,6 +14,7 @@ public class MyHttpSessionListener implements HttpSessionListener {
 @Override
     public void sessionCreated(HttpSessionEvent se) {
             System.out.println("Session 被创建,ID:"+se.getSession().getId());
+
             }
 
 @Override
