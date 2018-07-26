@@ -5,6 +5,7 @@ import java.util.List;
 import com.bdcom.cn.JunitApp;
 import com.bdcom.cn.dao.UserRepository;
 import com.bdcom.cn.model.User;
+import com.bdcom.cn.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +19,16 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 //@SpringApplicationConfiguration(classes = Application.class)// 1.4.0 前版本
 public class SpringBootJdbcTest {
 
+   // @Autowired
+   // private UserRepository userRepository;
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
 
     @Test
     public void findAllUsers()  {
-        List<User> users = userRepository.findAll();
+        //List<User> users = userRepository.findAll();
+        List<User> users = userService.findAll();
         System.out.println(users);
 
 
@@ -32,20 +36,25 @@ public class SpringBootJdbcTest {
 
     @Test
     public void findUserById()  {
-        User user = userRepository.findUserById(1);
+        //User user = userRepository.findUserById(1);
+        User user = userService.findUserById(1);
         System.out.println(user);
     }
     @Test
     public void findUserByName()  {
-        List<User> users = userRepository.findUserByName("jjl");
+        //List<User> users = userRepository.findUserByName("jjl");
+        List<User> users = userService.findUserByName("jjl");
         System.out.println(users);
     }
     @Test
     public void updateById()  {
         User newUser = new User(1, "JackChen", "JackChen@qq.com");
-        userRepository.updateUser(newUser.getEmail(),newUser.getName(),newUser.getId());
+        //userRepository.updateUser(newUser.getEmail(),newUser.getName(),newUser.getId());
+        userService.updateUser(newUser.getEmail(),newUser.getName(),newUser.getId());
        // userRepository.updateUserEmail(newUser.getEmail(),newUser.getId());
-        User newUser2 = userRepository.findUserById(newUser.getId());
+       // userService.updateUserEmail(newUser.getEmail(),newUser.getId());
+        //User newUser2 = userRepository.findUserById(newUser.getId());
+        User newUser2 = userService.findUserById(newUser.getId());
         System.out.println(newUser2);
     }
 
@@ -54,7 +63,9 @@ public class SpringBootJdbcTest {
     @Test
     public void createUser() {
         User user = new User(0, "jjl", "jjl@gmail.com");
-        User savedUser = userRepository.save(user);
+        //User savedUser = userRepository.save(user);
+        User savedUser = userService.save(user);
+
         System.out.println(savedUser);
     }
 }
