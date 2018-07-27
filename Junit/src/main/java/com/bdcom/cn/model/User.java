@@ -1,11 +1,10 @@
 package com.bdcom.cn.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 
 @Entity
+@Table(name="User2")
 public class User {
     public User(int id,String name, String email) {
         this.id=id;
