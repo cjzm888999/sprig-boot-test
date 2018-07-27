@@ -14,11 +14,11 @@ public interface UserRepository extends JpaRepository<User,Long> {
     public User findUserById(int id);
     @Modifying
    // @Transactional
-    @Query(value="update User set email=:email,name=:name where id=:id" , nativeQuery=true )
+    @Query(value="update User2 set email=:email,name=:name where id=:id" , nativeQuery=true )
     public int updateUser(@Param("email") String mail,@Param("name") String name, @Param("id") int id);
 
     @Modifying
    // @Transactional
-    @Query(value="update User set email=:email where id=:id" , nativeQuery=true )
+    @Query(value="update User2 set email=:email where id=:id" , nativeQuery=true )
     public int updateUserEmail(@Param("email") String email, @Param("id") int id);
 }
