@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)https://www.cnblogs.com/winner-0715/p/6798679.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="origin">
+<title>Spring Boot使用自定义的properties - winner_0715 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Spring Boot使用自定义的properties - winner_0715 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Spring Boot使用自定义的properties - winner_0715 - 博客园_files/bundle-darkgreentrip.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./Spring Boot使用自定义的properties - winner_0715 - 博客园_files/bundle-darkgreentrip-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/winner-0715/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/winner-0715/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/winner-0715/wlwmanifest.xml">
+<script async="" src="./Spring Boot使用自定义的properties - winner_0715 - 博客园_files/analytics.js.下载"></script><script type="text/javascript" src="./Spring Boot使用自定义的properties - winner_0715 - 博客园_files/encoder.js.下载"></script><script src="./Spring Boot使用自定义的properties - winner_0715 - 博客园_files/jquery-2.2.0.min.js.下载"></script>
+<script type="text/javascript">var currentBlogApp = 'winner-0715', cb_enable_mathjax=true;var isLogined=false;</script>
+<script type="text/x-mathjax-config;executed=true">
+    MathJax.Hub.Config({
+        tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'blogpost-body', processEscapes: true },
+        TeX: { 
+            equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, extensions: ['extpfeil.js'] },
+            'HTML-CSS': { linebreaks: { automatic: true } },
+            SVG: { linebreaks: { automatic: true } }
+        });
+    </script><script src="./Spring Boot使用自定义的properties - winner_0715 - 博客园_files/MathJax.js.下载"></script>
+<script src="./Spring Boot使用自定义的properties - winner_0715 - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/winner-0715/"><img id="blogLogo" src="./Spring Boot使用自定义的properties - winner_0715 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/winner-0715/">winner_0715</a></h1>
+<h2><p style="color: #e60012">此随笔或为自己所写、或为转载于网络。仅用于个人收集及备忘。</p></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/winner-0715/">首页</a></li>
+<li></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/winner_0715">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/winner-0715/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/winner-0715/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 699&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 40</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/winner-0715/p/6798679.html">Spring Boot使用自定义的properties</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p><span style="font-family: &quot;courier new&quot;, courier">spring boot使用application.properties<span style="color: #ff0000">默认</span>了很多配置。但需要自己添加一些配置的时候，我们应该怎么做呢。</span></p>
+<p><span style="font-family: &quot;courier new&quot;, courier">若继续在application.properties中添加如：</span></p>
+<div class="cnblogs_code">
+<pre><span style="font-family: &quot;courier new&quot;, courier">wisely.name=<span style="color: #000000">zhangsan
+wisely.gender</span>=<span style="color: #000000">male
+wisely.age</span>=20</span></pre>
+</div>
+<p><span style="font-family: &quot;courier new&quot;, courier">定义配置类：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Spring Boot使用自定义的properties - winner_0715 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="font-family: &quot;courier new&quot;, courier">@ConfigurationProperties(<strong><span style="color: #ff0000">prefix = "wisely"</span></strong><span style="color: #000000">)
+</span><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> WiselySettings {
+
+    </span><span style="color: #0000ff">private</span><span style="color: #000000"> String name;
+
+    </span><span style="color: #0000ff">private</span><span style="color: #000000"> String gender;
+
+    </span><span style="color: #0000ff">private</span><span style="color: #000000"> Integer age;
+
+    </span><span style="color: #0000ff">public</span><span style="color: #000000"> String getName() {
+        </span><span style="color: #0000ff">return</span><span style="color: #000000"> name;
+    }
+
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> setName(String name) {
+        </span><span style="color: #0000ff">this</span>.name =<span style="color: #000000"> name;
+    }
+
+    </span><span style="color: #0000ff">public</span><span style="color: #000000"> String getGender() {
+        </span><span style="color: #0000ff">return</span><span style="color: #000000"> gender;
+    }
+
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> setGender(String gender) {
+        </span><span style="color: #0000ff">this</span>.gender =<span style="color: #000000"> gender;
+    }
+
+    </span><span style="color: #0000ff">public</span><span style="color: #000000"> Integer getAge() {
+        </span><span style="color: #0000ff">return</span><span style="color: #000000"> age;
+    }
+
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> setAge(Integer age) {
+        </span><span style="color: #0000ff">this</span>.age =<span style="color: #000000"> age;
+    }
+}</span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Spring Boot使用自定义的properties - winner_0715 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-family: &quot;courier new&quot;, courier">注入application.properties文件中的属性</span></p>
+<p><span style="font-family: &quot;courier new&quot;, courier">若新用新的配置文件，如新建一个wisely.properties</span></p>
+<div class="cnblogs_code">
+<pre><span style="font-family: &quot;courier new&quot;, courier">wisely2.name=<span style="color: #000000">lisi
+wisely2.gender</span>=<span style="color: #000000">female
+wisely2.age</span>=30</span></pre>
+</div>
+<p><span style="font-family: &quot;courier new&quot;, courier">需定义如下配置类</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Spring Boot使用自定义的properties - winner_0715 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="font-family: &quot;courier new&quot;, courier"><span style="color: #000000">@Configuration
+@PropertySource(</span>"classpath:wisely.properties"<span style="color: #000000">)<span style="color: #008000">//注意路径
+</span></span><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> Wisely2Settings {
+
+    @Value(</span>"${wisely2.name}"<span style="color: #000000">)
+    </span><span style="color: #0000ff">private</span><span style="color: #000000"> String name;<br>
+    @Value(</span>"${wisely2.gender}"<span style="color: #000000">)
+    </span><span style="color: #0000ff">private</span><span style="color: #000000"> String gender;<br>
+    @Value(</span>"${wisely2.age}"<span style="color: #000000">)
+    </span><span style="color: #0000ff">private</span><span style="color: #000000"> Integer age;
+
+    </span><span style="color: #0000ff">public</span><span style="color: #000000"> String getName() {
+        </span><span style="color: #0000ff">return</span><span style="color: #000000"> name;
+    }
+
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> setName(String name) {
+        </span><span style="color: #0000ff">this</span>.name =<span style="color: #000000"> name;
+    }
+
+    </span><span style="color: #0000ff">public</span><span style="color: #000000"> String getGender() {
+        </span><span style="color: #0000ff">return</span><span style="color: #000000"> gender;
+    }
+
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> setGender(String gender) {
+        </span><span style="color: #0000ff">this</span>.gender =<span style="color: #000000"> gender;
+    }
+
+    </span><span style="color: #0000ff">public</span><span style="color: #000000"> Integer getAge() {
+        </span><span style="color: #0000ff">return</span><span style="color: #000000"> age;
+    }
+
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> setAge(Integer age) {
+        </span><span style="color: #0000ff">this</span>.age =<span style="color: #000000"> age;
+    }
+}</span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Spring Boot使用自定义的properties - winner_0715 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="color: #ff0000; font-family: &quot;courier new&quot;, courier">@ConfigurationProperties(prefix&nbsp;=&nbsp;"wisely2",locations&nbsp;=&nbsp;"classpath:wisely.properties")</span></p>
+<p><span style="color: #ff0000; font-family: &quot;courier new&quot;, courier">这个注解貌似已经取消了，所以这里使用@PropertySource注解</span></p>
+<p><span style="font-family: &quot;courier new&quot;, courier">最后注意在spring Boot入口类加上@EnableConfigurationProperties</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Spring Boot使用自定义的properties - winner_0715 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="font-family: &quot;courier new&quot;, courier"><span style="color: #000000">@SpringBootApplication
+@EnableConfigurationProperties({WiselySettings.</span><span style="color: #0000ff">class</span><span style="color: #000000">})
+</span><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> DemoApplication {
+
+    </span><span style="color: #0000ff">public</span> <span style="color: #0000ff">static</span> <span style="color: #0000ff">void</span><span style="color: #000000"> main(String[] args) {
+        SpringApplication.run(DemoApplication.</span><span style="color: #0000ff">class</span><span style="color: #000000">, args);
+    }
+}</span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Spring Boot使用自定义的properties - winner_0715 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-family: &quot;courier new&quot;, courier">Wisely2Settings.class不需要加，因为它没有使用@ConfigurationProperties注解<br></span></p>
+<p><span style="font-family: &quot;courier new&quot;, courier">测试:</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Spring Boot使用自定义的properties - winner_0715 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="font-family: &quot;courier new&quot;, courier"><span style="color: #000000">@Controller
+</span><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span><span style="color: #000000"> TestController {
+
+    @Resource
+    WiselySettings wiselySettings;
+
+    @Resource
+    Wisely2Settings wisely2Settings;
+
+    @RequestMapping(</span>"/test"<span style="color: #000000">)
+    </span><span style="color: #0000ff">public</span><span style="color: #000000">
+    @ResponseBody
+    String test() {
+        System.out.println(</span>"wisely.name = " +<span style="color: #000000"> wiselySettings.getName());
+        System.out.println(</span>"wisely.gender = " +<span style="color: #000000"> wiselySettings.getGender());
+        System.out.println(</span>"wisely.age = " +<span style="color: #000000"> wiselySettings.getAge());
+        System.out.println(</span>"wisely2.name = " +<span style="color: #000000"> wisely2Settings.getName());
+        System.out.println(</span>"wisely2.gender = " +<span style="color: #000000"> wisely2Settings.getGender());
+        System.out.println(</span>"wisely2.age = " +<span style="color: #000000"> wisely2Settings.getAge());
+        </span><span style="color: #0000ff">return</span> "ok"<span style="color: #000000">;
+    }
+}</span></span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Spring Boot使用自定义的properties - winner_0715 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-family: &quot;courier new&quot;, courier">参考：http://412887952-qq-com.iteye.com/blog/2292728</span></p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/winner-0715/category/978334.html" target="_blank">Spring Boot</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(6798679,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;22dfbcfd-0776-e511-9fc1-ac853d9f53cc&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Spring Boot使用自定义的properties - winner_0715 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Spring Boot使用自定义的properties - winner_0715 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/winner-0715/" target="_blank"><img src="./Spring Boot使用自定义的properties - winner_0715 - 博客园_files/20160104210031.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/winner-0715/">winner_0715</a><br>
+            <a href="http://home.cnblogs.com/u/winner-0715/followees">关注 - 5</a><br>
+            <a href="http://home.cnblogs.com/u/winner-0715/followers">粉丝 - 82</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;22dfbcfd-0776-e511-9fc1-ac853d9f53cc&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(6798679,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(6798679,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/winner-0715/p/6796324.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/winner-0715/p/6796324.html" title="发布于2017-05-02 15:32">Jenkins自动部署到(远程)tomcat服务器</a><br><a href="http://www.cnblogs.com/winner-0715/p/6803137.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/winner-0715/p/6803137.html" title="发布于2017-05-03 17:53">Spring Boot改变自动扫描的包</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2017-05-02 21:51</span> <a href="http://www.cnblogs.com/winner-0715/">winner_0715</a> 阅读(<span id="post_view_count">5171</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=6798679" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/winner-0715/p/6798679.html#" onclick="AddToWz(6798679);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=249702,cb_entryId=6798679,cb_blogApp=currentBlogApp,cb_blogUserGuid='22dfbcfd-0776-e511-9fc1-ac853d9f53cc',cb_entryCreatedDate='2017/5/2 21:51:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/winner-0715/p/6798679.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/winner-0715/p/6798679.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】超50万VC++源码: 大型组态工控、电力仿真CAD与GIS源码库！</a><br><a href="https://www.grapecity.com.cn/developer/spreadjs?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=SpreadJS&amp;utm_campaign=community" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-T2-Spread&#39;)">【前端】SpreadJS表格控件，可嵌入应用开发的在线Excel</a><br><a href="https://cloud.tencent.com/developer/labs?fromSource=gwzcw.1087957.1087957.1087957" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-T2 - 腾讯云&#39;)">【推荐】如何快速搭建人工智能应用？</a><br><a href="https://cloud.tencent.com/developer/salon/activity-1078?fromSource=gwzcw.1110771.1110771.1110771" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-T2-AI&#39;)">【活动】AI技术全面场景化落地实践</a><br><a href="http://challenge.xfyun.cn/?ch=bk" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-xfyun&#39;)">【大赛】2018首届“顶天立地”AI开发者大赛</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="https://cloud.tencent.com/act/campus?fromSource=gwzcw.1087959.1087959.1087959" target="_blank"><img width="300" height="250" src="./Spring Boot使用自定义的properties - winner_0715 - 博客园_files/24442-20180710085714894-1703644023.jpg" alt="腾讯云0710" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;C1&#39;);"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/602902/" target="_blank">自然语言处理到底哪家强？这些企业上榜了</a><br> ·  <a href="https://news.cnblogs.com/n/602878/" target="_blank">培训班不火，币圈哪来的“未来”</a><br> ·  <a href="https://news.cnblogs.com/n/602900/" target="_blank">关于猎豹的机器人梦想，傅盛做了这些解答</a><br> ·  <a href="https://news.cnblogs.com/n/602872/" target="_blank">拼多多上市：宽进严出能管住质量吗？为什么退赔的不是现金？</a><br> ·  <a href="https://news.cnblogs.com/n/602898/" target="_blank">QingCloud强势发布9大产品品牌 黄允松说要对ICT模式「打破重建」</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="http://click.aliyun.com/m/34770/" target="_blank"><img src="./Spring Boot使用自定义的properties - winner_0715 - 博客园_files/TB1gBPhgZLJ8KJjy0FnXXcFDpXa-468-60.jpg" alt="" style="width: 468px; height: 60px;"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/602573/" target="_blank">如何提高代码质量？</a><br> ·  <a href="http://kb.cnblogs.com/page/602486/" target="_blank">在腾讯的八年，我的职业思考</a><br> ·  <a href="http://kb.cnblogs.com/page/602163/" target="_blank">为什么我离开了管理岗位</a><br> ·  <a href="http://kb.cnblogs.com/page/602053/" target="_blank">那些让人睡不着觉的bug，你有没有遭遇过？</a><br> ·  <a href="http://kb.cnblogs.com/page/602061/" target="_blank">观察之道：带你走进可观察性</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/winner-0715/">winner_0715</a><br>园龄：<a href="https://home.cnblogs.com/u/winner-0715/" title="入园时间：2015-10-19">2年9个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/winner-0715/followers/">82</a><br>关注：<a href="https://home.cnblogs.com/u/winner-0715/followees/">5</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;22dfbcfd-0776-e511-9fc1-ac853d9f53cc&#39;)">+加关注</a></div><script>getFollowStatus('22dfbcfd-0776-e511-9fc1-ac853d9f53cc')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/06/01&#39;);return false;">&lt;</a></td><td align="center">2018年7月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/08/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">24</td><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td></tr><tr><td class="CalWeekendDay" align="center">1</td><td align="center">2</td><td align="center"><a href="http://www.cnblogs.com/winner-0715/archive/2018/07/03.html"><u>3</u></a></td><td align="center">4</td><td align="center"><a href="http://www.cnblogs.com/winner-0715/archive/2018/07/05.html"><u>5</u></a></td><td align="center">6</td><td class="CalWeekendDay" align="center">7</td></tr><tr><td class="CalWeekendDay" align="center">8</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center"><a href="http://www.cnblogs.com/winner-0715/archive/2018/07/13.html"><u>13</u></a></td><td class="CalWeekendDay" align="center">14</td></tr><tr><td class="CalWeekendDay" align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center"><a href="http://www.cnblogs.com/winner-0715/archive/2018/07/18.html"><u>18</u></a></td><td align="center"><a href="http://www.cnblogs.com/winner-0715/archive/2018/07/19.html"><u>19</u></a></td><td align="center">20</td><td class="CalWeekendDay" align="center">21</td></tr><tr><td class="CalWeekendDay" align="center">22</td><td align="center"><a href="http://www.cnblogs.com/winner-0715/archive/2018/07/23.html"><u>23</u></a></td><td align="center">24</td><td align="center"><a href="http://www.cnblogs.com/winner-0715/archive/2018/07/25.html"><u>25</u></a></td><td align="center">26</td><td class="CalTodayDay" align="center">27</td><td class="CalWeekendDay" align="center">28</td></tr><tr><td class="CalWeekendDay" align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/winner-0715/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/winner-0715/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/winner-0715/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/winner-0715/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/winner-0715/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(658)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="https://www.cnblogs.com/winner-0715/category/745737.html">Algorithm(13)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="https://www.cnblogs.com/winner-0715/category/1056829.html">API(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="https://www.cnblogs.com/winner-0715/category/745734.html">Architecture(36)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="https://www.cnblogs.com/winner-0715/category/1035828.html">Bootstrap(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="https://www.cnblogs.com/winner-0715/category/879859.html">Cache(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="https://www.cnblogs.com/winner-0715/category/985105.html">Clean Code (28)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="https://www.cnblogs.com/winner-0715/category/798609.html">Collections(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="https://www.cnblogs.com/winner-0715/category/745736.html">Databases(21)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="https://www.cnblogs.com/winner-0715/category/892654.html">Design Patterns(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="https://www.cnblogs.com/winner-0715/category/829228.html">Dubbo(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="https://www.cnblogs.com/winner-0715/category/1076103.html">ELK(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="https://www.cnblogs.com/winner-0715/category/899162.html">Exception(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="https://www.cnblogs.com/winner-0715/category/770532.html">Git(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="https://www.cnblogs.com/winner-0715/category/915952.html">Gradle</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="https://www.cnblogs.com/winner-0715/category/1100835.html">Guava(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="https://www.cnblogs.com/winner-0715/category/907969.html">HTTP(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="https://www.cnblogs.com/winner-0715/category/1060086.html">I/O(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="https://www.cnblogs.com/winner-0715/category/785076.html">IDEA(15)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="https://www.cnblogs.com/winner-0715/category/745732.html">J2SE(95)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="https://www.cnblogs.com/winner-0715/category/750787.html">JavaScript(31)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="https://www.cnblogs.com/winner-0715/category/848385.html">Jenkins(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="https://www.cnblogs.com/winner-0715/category/1215567.html">JMM</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="https://www.cnblogs.com/winner-0715/category/888299.html">JSON(13)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_23" href="https://www.cnblogs.com/winner-0715/category/798608.html">JUC(18)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_24" href="https://www.cnblogs.com/winner-0715/category/751286.html">JVM(34)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_25" href="https://www.cnblogs.com/winner-0715/category/745733.html">Linux(31)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_26" href="https://www.cnblogs.com/winner-0715/category/843174.html">Log(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_27" href="https://www.cnblogs.com/winner-0715/category/802180.html">Maven(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_28" href="https://www.cnblogs.com/winner-0715/category/1171400.html">Meituan</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_29" href="https://www.cnblogs.com/winner-0715/category/931502.html">MQ(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_30" href="https://www.cnblogs.com/winner-0715/category/803959.html">MyBatis(28)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_31" href="https://www.cnblogs.com/winner-0715/category/922738.html">MySQL(30)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_32" href="https://www.cnblogs.com/winner-0715/category/1075053.html">Netty(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_33" href="https://www.cnblogs.com/winner-0715/category/745817.html">Network(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_34" href="https://www.cnblogs.com/winner-0715/category/781255.html">Nginx(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_35" href="https://www.cnblogs.com/winner-0715/category/1175977.html">NIO(19)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_36" href="https://www.cnblogs.com/winner-0715/category/767434.html">Notes(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_37" href="https://www.cnblogs.com/winner-0715/category/866021.html">Quartz(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_38" href="https://www.cnblogs.com/winner-0715/category/922737.html">Redis(16)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_39" href="https://www.cnblogs.com/winner-0715/category/878782.html">RPC(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_40" href="https://www.cnblogs.com/winner-0715/category/937399.html">Shiro</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_41" href="https://www.cnblogs.com/winner-0715/category/745735.html">Spring(25)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_42" href="https://www.cnblogs.com/winner-0715/category/978334.html">Spring Boot(17)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_43" href="https://www.cnblogs.com/winner-0715/category/755399.html">Spring MVC(26)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_44" href="https://www.cnblogs.com/winner-0715/category/828769.html">SSM(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_45" href="https://www.cnblogs.com/winner-0715/category/988649.html">SSO(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_46" href="https://www.cnblogs.com/winner-0715/category/857522.html">Thrift</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_47" href="https://www.cnblogs.com/winner-0715/category/751285.html">Tomcat(19)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_48" href="https://www.cnblogs.com/winner-0715/category/830949.html">Zookeeper(2)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links1214539" class="catList sidebar-block">
+<h3 class="catListTitle">不错的博客</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://jm.taobao.org/" rel="nofollow"> 阿里中间件</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.carlzone.cn/" rel="nofollow">carl.zhao</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://cmsblogs.com/" rel="nofollow">chenssy</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://blog.csdn.net/clementad" rel="nofollow">Clement-Xu</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="https://www.jianshu.com/u/d19536b0189b" rel="nofollow">CodeSheep </a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="https://my.oschina.net/qixiaobo025/blog" rel="nofollow">Mr_Qi</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="https://www.zhihu.com/people/rednaxelafx/answers" rel="nofollow">R大</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://my.csdn.net/linsongbin1" rel="nofollow">Sam哥哥</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://insights.thoughtworkers.org/category/technology/">thoughtworkers</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="https://www.jianshu.com/u/6779ec81d3b7" rel="nofollow">阿飞Javaer</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://hellojava.info/" rel="nofollow">毕玄</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="https://www.jianshu.com/u/f7daa458b874" rel="nofollow">肥朝(dubbo源码解析)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://calvin1978.blogcn.com/" rel="nofollow">江南白衣</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="https://ketao1989.github.io/archive/">柯小小西</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="https://coolshell.cn/" rel="nofollow">酷壳</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="https://www.jianshu.com/u/581f548ef0ec" rel="nofollow">李艳鹏</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://blog.720ui.com/" rel="nofollow">梁桂钊的博客</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://thinkinjava.cn/archives" rel="nofollow">蚂蚁sofa</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="https://tech.meituan.com/" rel="nofollow">美团点评技术团队</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="https://www.bysocket.com/" rel="nofollow">泥瓦匠BYSocket</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.ruanyifeng.com/blog/" rel="nofollow">阮一峰的网络日志</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_21" href="https://www.jianshu.com/u/4fdc8c2315e8" rel="nofollow">闪电侠</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_22" href="https://www.cnblogs.com/xwjie/p/7599064.html" rel="nofollow">晓风轻</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_23" href="https://www.cnblogs.com/xiexj" rel="nofollow">谢晓静</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_24" href="https://my.oschina.net/xuxueli/home" rel="nofollow">许雪里</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_25" href="https://my.oschina.net/ywbrj042/blog" rel="nofollow">杨武兵</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_26" href="http://www.iocoder.cn/?vip" rel="nofollow">芋道源码 —— 纯源码解析博客</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_27" href="http://blog.didispace.com/" rel="nofollow">翟永超(Spring4All社区联合发起人)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_28" href="https://www.jianshu.com/u/90ab66c248e6" rel="nofollow">占小狼</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/winner-0715/p/5847638.html#3996184">1. Re:为什么需要RPC，而不是简单的HTTP接口</a></li>
+        <li class="recent_comment_body">Remote Procedure Call  不是 Remote Produce Call</li>
+        <li class="recent_comment_author">--茄子烧黄瓜</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="https://www.cnblogs.com/winner-0715/p/6666579.html">1. SpringBoot项目在IntelliJ IDEA中实现热部署(12)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2018 winner_0715
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>
