@@ -1,0 +1,2230 @@
+
+    
+
+
+   
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>spring boot学习教程(28):spring boot actuator监控和管理生产环境-V型知识库</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="renderer" content="webkit">
+   <meta name="keywords" content="spring boot actuator，监控和管理生产环境">
+	<meta name="description" content="spring boot学习教程(28):spring boot actuator监控和管理生产环境">
+
+    <link rel="icon" href="/vxzsk.ico" type="image/x-icon"/> 
+    <link rel="stylesheet" href="http://www.vxzsk.com/resource/v2/style.css">
+    <link rel="stylesheet" href="http://www.vxzsk.com/resource/v2/mbv2.min.css">
+    <script type="text/javascript" src="http://www.vxzsk.com/resource/js/jquery-2.0.3.min.js"></script>
+    <script charset="utf-8" async="" src="http://www.vxzsk.com/resource/v2/jstree.min.js"></script>
+    <link charset="utf-8" rel="stylesheet" href="http://www.vxzsk.com/resource/v2/style.min.css">
+  
+    <link href="http://www.vxzsk.com/resource/js/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="http://www.vxzsk.com/resource/js/ueditor/third-party/SyntaxHighlighter/shCore.js"></script>
+    <link charset="utf-8" rel="stylesheet" href="http://www.vxzsk.com/resource/v2/mb.css">
+
+    <style type="text/css">
+.cc a:hover{
+ color: red;
+ text-decoration: underline;
+
+}
+.jstree-icon {
+    margin-top: -3px;
+}
+.m-article .article-head h5 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 200;
+    text-align: center;
+    line-height: 30px;
+    padding-left: 55px;
+    padding-right: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #7e888b;
+}
+.bd-reward-stl{
+font-family: "microsoft yahei";
+    text-align: center;
+    background: #f1f1f1;
+    padding: 10px 0;
+    color: #666;
+    margin: 20px auto;
+    width: 100%;
+}
+
+.st{
+background:#5D6D1E;
+color: #fff;
+}
+#bdRewardBtn{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    line-height: 58px;
+    color: #fff;
+    font: 400 25px/50px 'microsoft yahei';
+    background: #FEC22C;
+}
+</style>
+<!-- 百度统计代码开始 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?6d6d1dddfa86eb1d44c48132c0ba29c7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<!-- 百度统计代码结束 -->
+
+</head>
+
+<body>
+
+<div class="m-manual manual-reader manual-mode-view font-size-1 font-theme-0 manual-active" >
+    <div class="manual-head" style="border-bottom: 1px solid  #5D6D1E; " >
+        <div class="left"><span class="slidebar"><i class="icon-menu"></i></span>
+            <a class="manual-title" href="http://www.vxzsk.com/tags/45.html" title="spring boot学习教程">
+                <b class="text" ><h4 style="font-size: 16px;font-weight: bold;">spring boot学习教程</h4>
+             </b>
+            </a>
+           
+        </div>
+        <div style="float: right;margin-right: 15px;">
+          <a href="http://www.vxzsk.com" target="_blank"><img src="http://www.vxzsk.com/resource/images/logo.png"></a>
+           </div>
+    </div>
+    <div class="manual-body">
+        <div class="manual-left" >
+            <div class="manual-tab" style="bottom: 35px;">
+                <div class="tab-navg" align="center">
+                    <span data-mode="view" class="navg-item active"><b class="text">目录</b></span>
+                    
+                </div>
+                
+                <div class="tab-wrap">
+                    <div class="tab-item manual-catalog">
+                        <div class="catalog-list read-book-preview jstree jstree-1 jstree-default" role="tree" tabindex="0" aria-activedescendant="156632" aria-busy="false">
+                      
+                      
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/251.html" title="前言" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     前言
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/321.html" title="一、spring boot之Hello World示例" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     一、spring boot之Hello World示例
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/324.html" title="二、spring boot 返回json案例demo" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     二、spring boot 返回json案例demo
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/332.html" title="三、spring boot 热部署配置" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     三、spring boot 热部署配置
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/339.html" title="四、spring boot全局异常处理代码demo" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     四、spring boot全局异常处理代码demo
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/346.html" title="五、spring boot hibernate 配置" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     五、spring boot hibernate 配置
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/352.html" title="六、使用JPA保存数据" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     六、使用JPA保存数据
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/355.html" title="七、spring boot mysql配置" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     七、spring boot mysql配置
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/371.html" title="八、spring boot jdbctemplate 的使用" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     八、spring boot jdbctemplate 的使用
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/373.html" title="九、端口设置和contextpath配置" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     九、端口设置和contextpath配置
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/387.html" title="十、静态资源处理配置" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     十、静态资源处理配置
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/392.html" title="十一、spring boot定时任务的使用" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     十一、spring boot定时任务的使用
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/407.html" title="十二、spring boot使用Druid和监控配置" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     十二、spring boot使用Druid和监控配置
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/432.html" title="十三、spring boot普通类调用bean实现" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     十三、spring boot普通类调用bean实现
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/440.html" title="十四、spring boot使用thymeleaf模板配置和freemarker模板配置" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     十四、spring boot使用thymeleaf模板配置和freemarker模板配置
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/500.html" title="十五、集成jsp（springMVC）" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     十五、集成jsp（springMVC）
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/514.html" title="十六、spring boot servlet注入" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     十六、spring boot servlet注入
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/530.html" title="十七、过滤器，监听器的使用" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     十七、过滤器，监听器的使用
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/559.html" title="十八、spring boot拦截器HandlerInterceptor" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     十八、spring boot拦截器HandlerInterceptor
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/575.html" title="十九、spring boot CommandLineRunner启动加载数据实现" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     十九、spring boot CommandLineRunner启动加载数据实现
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/577.html" title="二十、spring boot environmentaware接口实现环境变量读取和属性对象的绑定" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     二十、spring boot environmentaware接口实现环境变量读取和属性对象的绑定
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/622.html" title="二十一、spring boot Junit单元测试" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     二十一、spring boot Junit单元测试
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/623.html" title="二十二、Spring Boot使用自定义的properties属性文件" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     二十二、Spring Boot使用自定义的properties属性文件
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/624.html" title="二十三、改变自动扫描的包" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     二十三、改变自动扫描的包
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/625.html" title="二十四、spring boot banner的设置" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     二十四、spring boot banner的设置
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/638.html" title="二十五、文件上传【多文件上传】" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     二十五、文件上传【多文件上传】
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/654.html" title="二十六、导入时如何定制spring-boot依赖项的版本" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     二十六、导入时如何定制spring-boot依赖项的版本
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/660.html" title="二十七、spring boot 导入xml配置" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     二十七、spring boot 导入xml配置
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"  role="group">
+                        
+                        <li style="background:#5D6D1E;" class="jstree-node  jstree-leaf">
+                       
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/675.html" title="二十八、spring boot actuator监控和管理生产环境" tabindex="-1" style="color: #fff" >
+                      
+                        
+     
+    
+   
+    
+  
+                     二十八、spring boot actuator监控和管理生产环境   
+                       
+                       </a>
+                       </li>
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                         </ul>
+                       
+                       
+                       
+                       
+                        
+                        
+                         
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/747.html" title="二十九、spring boot 启动器starter" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     二十九、spring boot 启动器starter
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/748.html" title="三十、spring boot 集成redis" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     三十、spring boot 集成redis
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/749.html" title="三十一、spring boot cache理论详解" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     三十一、spring boot cache理论详解
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/759.html" title="三十二、spring boot 集成EHCache" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     三十二、spring boot 集成EHCache
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/762.html" title="三十三、spring boot 共享session redis实现" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     三十三、spring boot 共享session redis实现
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/766.html" title="三十四、spring boot shiro权限管理" tabindex="-1"  >
+                      
+                        
+   
+      
+    <i role="presentation" class="jstree-icon" style="margin-top: -3px;margin-left: -28px;"></i> 
+   
+  
+                       
+                        
+                     三十四、spring boot shiro权限管理
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                       <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots" role="group">
+                        
+                        <li  role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor"  class="cc jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor"  href="http://www.vxzsk.com/769.html" style="padding: 3px 4px 0px 15px;" >
+                       spring boot 集成shiro(用户授权和权限控制)</a>
+                       </li>
+                        </ul>
+                        
+                       <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots" role="group">
+                        
+                        <li  role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor"  class="cc jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor"  href="http://www.vxzsk.com/774.html" style="padding: 3px 4px 0px 15px;" >
+                       spring boot集成shiro与缓存ehcache</a>
+                       </li>
+                        </ul>
+                        
+                       <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots" role="group">
+                        
+                        <li  role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor"  class="cc jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor"  href="http://www.vxzsk.com/778.html" style="padding: 3px 4px 0px 15px;" >
+                       spring boot 集成shiro记住我实现</a>
+                       </li>
+                        </ul>
+                        
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/779.html" title="三十五、spring-boot-devtools热部署实现" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     三十五、spring-boot-devtools热部署实现
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/784.html" title="三十六、java创建bean并注册到spring中" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     三十六、java创建bean并注册到spring中
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/788.html" title="三十七、spring boot 多数据源配置" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     三十七、spring boot 多数据源配置
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/795.html" title="三十八、spring boot slf4j 配置日志记录" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     三十八、spring boot slf4j 配置日志记录
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/791.html" title="三十八、spring boot 动态数据源配置" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     三十八、spring boot 动态数据源配置
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/797.html" title="三十九、spring boot集成mybatis" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     三十九、spring boot集成mybatis
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/804.html" title="四十、: spring boot 使用AOP统一处理Web请求日志" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     四十、: spring boot 使用AOP统一处理Web请求日志
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/811.html" title="四十一、spring boot 发送邮件" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     四十一、spring boot 发送邮件
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/812.html" title="四十二、spring boot restful API风格" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     四十二、spring boot restful API风格
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/818.html" title="四十三、spring boot日志理论详解" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     四十三、spring boot日志理论详解
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/819.html" title="四十四、spring boot log4j 配置" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     四十四、spring boot log4j 配置
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/825.html" title="四十五、spring boot 多环境配置读取属性文件" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     四十五、spring boot 多环境配置读取属性文件
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/829.html" title="四十六、spring boot log4j多环境不同日志级别控制" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     四十六、spring boot log4j多环境不同日志级别控制
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/842.html" title="四十七、spring boot logback 配置" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     四十七、spring boot logback 配置
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/852.html" title="四十八、spring boot 服务配置和部署" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     四十八、spring boot 服务配置和部署
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/853.html" title="四十九、spring boot 使用注解@async实现异步调用" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     四十九、spring boot 使用注解@async实现异步调用
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/854.html" title="五十、spring boot 自定义properties使用详解" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     五十、spring boot 自定义properties使用详解
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/856.html" title="五十一、Spring Boot国际化（i18n）" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     五十一、Spring Boot国际化（i18n）
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                         
+                       
+                       
+                       
+                        
+                        
+                         
+                        <ul class="jstree-container-ul jstree-children jstree-wholerow-ul jstree-no-dots ss"   role="group">
+                        
+                        <li role="treeitem" aria-selected="true" aria-level="1" aria-labelledby="156632_anchor" id="156632" class="jstree-node  jstree-leaf">
+                        
+                        <a class="jstree-anchor" href="http://www.vxzsk.com/857.html" title="五十二、spring boot validator校验" tabindex="-1"  >
+                      
+                        
+     
+  
+   
+    
+  
+                       
+                        
+                     五十二、spring boot validator校验
+                       </a>
+                       
+                       </li>
+                       
+                       <!-- 子开始 -->
+                      
+                       
+                       
+                        <!-- 子结束-->
+                       
+                        </ul>
+                        
+                        
+                        
+                        
+                        </div>
+                    </div>
+                    
+                <div class="tab-item manual-collect"><div class="collect-result"></div></div></div>
+            </div>
+            <div class="m-copyright">
+                <p>
+                                        本文档使用
+                    <a href="http://www.vxzsk.com/" target="_blank" >V型知识库</a> 发布
+                </p>
+            </div>
+        </div>
+        
+        
+        <div class="manual-right">
+            <div class="m-article">
+                <div class="article-head">
+                   
+                     
+                    <div class="head-util">
+
+                    <div class="item w-drop drop-hover">
+                    <span class="drop-show"><b class="text">
+                     <!-- 百度分享开始 -->
+                <div class="bdsharebuttonbox">
+                <a href="javascript:void(0);" class="bds_more" data-cmd="more"></a>
+                <a href="javascript:void(0);" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+                <a href="javascript:void(0);" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                <a href="javascript:void(0);" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                <a href="javascript:void(0);" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+                <a href="javascript:void(0);" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+                <a href="javascript:void(0);" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                <a href="javascript:void(0);" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["copy","qzone","tsina","tqq","renren","weixin","sqq"],"viewText":"分享到：","viewSize":"16"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+                <!-- 百度分享结束 -->
+                    
+                    </b></span>
+                    </div></div> 
+                    <div>
+                    <h1 style="color: #000;font-weight: bold;" title="spring boot学习教程(28):spring boot actuator监控和管理生产环境">spring boot学习教程(28):spring boot actuator监控和管理生产环境</h1>
+                   <h5 style="font-size: 12px;margin-top: 10px;text-align:right;max-width: 980px;">
+                    2017年03月16日 16:17 | 1349次浏览  | 分类: <a href="http://www.vxzsk.com/49/cate.html" style="color: #999;text-decoration: none;" title="spring boot学习教程">spring boot学习教程</a> 
+                    
+                    </h5>
+                    </div>
+                </div>
+                <div class="article-wrap">
+                    <div class="article-view post_content">
+                        <div >
+                          <p><strong>spring-boot-actuator</strong>模块提供了一个监控和管理生产环境的模块，可以使用<span style="color: rgb(255, 0, 0);">http、jmx、ssh、telnet</span>等拉管理和监控应用。审计（Auditing）、</p><p>健康（health）、数据采集（metrics gathering）会自动加入到应用里面。</p><p>首先，写一个最基本的spring boot项目。</p><p>基于Maven的项目添加‘starter’依赖：</p><pre class="brush:xml;toolbar:false">&lt;dependency&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt;
+&lt;/dependency&gt;</pre><p>以下是所有监控描述：</p><p><br/><img src="http://www.vxzsk.com/upload/201703/1a91e71f-a709-4eed-ad35-a0e9c64df6b720170316.jpg"/></p><p><span style="color: rgb(255, 0, 0); font-size: 20px;"><br/></span></p><p><span style="color: rgb(255, 0, 0); font-size: 20px;">health</span></p><p>比如：http://localhost:8080/health &nbsp;</p><p>你可以得到结果</p><pre class="brush:java;toolbar:false">{
+status:&nbsp;&quot;UP&quot;,
+
+diskSpace:&nbsp;{
+
+status:&nbsp;&quot;UP&quot;,
+
+total:&nbsp;107374174208,
+
+free:&nbsp;14877962240,
+
+threshold:&nbsp;10485760
+
+}
+}</pre><p><br/></p><p>可以检查的其他一些情况的健康信息。下面的<span style="color: rgb(255, 0, 0);">HealthIndicators</span>会被<span style="color: rgb(255, 0, 0);">Spring Boot</span>自动配置：</p><pre class="brush:java;toolbar:false">DiskSpaceHealthIndicator&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;低磁盘空间检测
+
+DataSourceHealthIndicator&nbsp;&nbsp;检查是否能从DataSource获取连接
+
+MongoHealthIndicator&nbsp;&nbsp;&nbsp;检查一个Mongo数据库是否可用（up）
+
+RabbitHealthIndicator&nbsp;&nbsp;&nbsp;检查一个Rabbit服务器是否可用（up）
+
+RedisHealthIndicator&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;检查一个Redis服务器是否可用（up）
+
+SolrHealthIndicator&nbsp;&nbsp;检查一个Solr服务器是否可用（up）</pre><p>自定义当然也可以，你可以注册实现了<span style="color: rgb(255, 0, 0);">HealthIndicator</span>接口的<span style="color: rgb(255, 0, 0);">Spring beans，Health</span>响应需要包含一个<span style="color: rgb(255, 0, 0);">status</span>和可选的用于展示的详情。</p><pre class="brush:java;toolbar:false">import&nbsp;org.springframework.boot.actuate.health.HealthIndicator;
+import&nbsp;org.springframework.stereotype.Component;
+&nbsp;
+@Component
+public&nbsp;class&nbsp;MyHealth&nbsp;implements&nbsp;HealthIndicator&nbsp;{
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;@Override
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;Health&nbsp;health()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;errorCode&nbsp;=&nbsp;check();&nbsp;//&nbsp;perform&nbsp;some&nbsp;specific&nbsp;health&nbsp;check
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(errorCode&nbsp;!=&nbsp;0)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;Health.down().withDetail(&quot;Error&nbsp;Code&quot;,&nbsp;errorCode).build();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;Health.up().build();
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><p><br/></p><p><span style="font-size: 20px; color: rgb(255, 0, 0);">trace</span></p><p>访问http://localhost:8080/trace 可以看到结果，默认为最新的一些HTTP请求</p><p><br/></p><p><span style="font-size: 20px; color: rgb(255, 0, 0);">info</span></p><p>当执行 http://localhost:8080/info &nbsp;的时候，结果什么没有&nbsp;</p><p>但是，在application.properties加入一些配置</p><pre class="brush:java;toolbar:false">info.app.name=ecs
+info.app.version=1.0.0
+&nbsp;
+info.build.artifactId=@project.artifactId@
+info.build.version=@project.version@</pre><p>执行<span style="color: rgb(255, 0, 0);">/info</span>就可以看到有些信息了。</p><p><span style="color: rgb(255, 0, 0);">/info</span> 是用来在构建的时候，自动扩展属性的。对于<span style="color: rgb(255, 0, 0);">Maven</span>项目，可以通过 <span style="color: rgb(255, 0, 0);">@..@ </span>占位符引用Maven的’<span style="color: rgb(255, 0, 0);">project properties’</span>。<br/></p><p>更多的细节和探索，需要自己看看源码和spring boot的官方文档。<br/></p><p><br/></p>
+                        </div>
+                       
+                       
+             <br>
+             <p style="-webkit-appearance: none;
+    margin: 0;
+    border: none;
+    overflow: visible;
+    font: inherit;
+    color: #444444;
+    text-transform: none;
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 12px;
+    background: #f5f5f5;
+    vertical-align: middle;
+    line-height: 28px;
+    min-height: 30px;
+    font-size: 1rem;
+    text-decoration: none;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+    text-shadow: 0 1px 0 #ffffff;">感觉本站内容不错，读后有收获？<a target="_blank" href="http://www.vxzsk.com/t2.htm" style="color: #6DB33F">小额赞助,鼓励网站分享出更好的教程</a></p>
+         <br>    
+             
+             
+                       <div class="view-foot">
+                            <div class="article-jump">
+                                <span class="jump-up" style="display: block;">上一篇：<a  href="http://www.vxzsk.com/674.html" target="_blank" title="spring教程(15.2):spring bean byType自动装配">spring教程(15.2):spring bean byType自动装配</a></span>
+                               
+                                <span class="jump-down">下一篇：<a  href="http://www.vxzsk.com/676.html"  target="_blank" title="java代码注释规范">java代码注释规范</a></span>
+                               
+                            </div>
+                           <a class="view-backtop active"><span class="xxx">^</span></a>
+                             
+                        </div> 
+                          
+          
+          
+          <!-- 底部开始 -->
+    <div id="footer" class="footer cl" >
+  <div id="ft" class="wp cl">
+     
+     
+<div class="footer-left cl">
+     <!-- 影育创新 -->
+		Copyright © 2048 <a href="http://www.vxzsk.com/" rel="nofollow" style="text-decoration: none;">脚踩代码</a> | 
+        Designed by <a href="http://www.vxzsk.com/" target="_parent" rel="nofollow" style="text-decoration: none;">脚踩代码</a> | <a href="http://www.miitbeian.gov.cn/" style="text-decoration: none;" rel="nofollow" target="_blank">陕ICP备16010817号</a>|
+        <a  href="http://www.vxzsk.com/about.jsp" rel="nofollow" target="_blank" style="text-decoration: none;">关于我</a> | 
+         <a  href="http://www.vxzsk.com/leaveMess.jsp" rel="nofollow" target="_blank" style="text-decoration: none;">留言</a> | 
+        <a href="http://www.vxzsk.com/sitemap.htm" target="_blank" style="text-decoration: none;">网站地图</a> | <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260004135'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260004135%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+         
+         </div> 
+ <!-- 百度自动推送代码开始 --> 
+ <script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+ 
+ <!-- 百度自动推送代码 结束 -->             
+     
+  </div> 
+</div>
+    <!-- 底部结束 -->
+                    </div>
+                </div>
+               
+            </div>
+        
+        </div>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript">
+SyntaxHighlighter.all(); 
+
+jQuery(".view-backtop").click(function(){
+
+ $('.manual-right').animate({scrollTop:0},500);  
+ 
+                return false;  
+});
+
+
+</script>
+
+</html>
